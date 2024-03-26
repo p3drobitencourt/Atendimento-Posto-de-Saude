@@ -22,9 +22,7 @@ function mostrarMensagemRemocao(pessoaAtendida) {
  // Função para atualizar a exibição da fila
  function atualizarFila() {
      
-    }
-
- 
+  }
 //--------------------------------------------------------------------------------------------
  // funcao data
  function obterDataAtual() {

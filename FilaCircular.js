@@ -6,7 +6,7 @@ class FilaCircular{
         this.elementos= new Array(tamanho);
     }// fim construtor
   //-------------------------------   
-    get isFull(){
+    isFull(){
         return this.qtd === this.elementos.length;
     }
   //-------------------------------
