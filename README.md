@@ -3,6 +3,7 @@
 Nossa aplicação utiliza um sistema disciplina de dados em fila para fornecer ferramentas de gerenciamento para o gerenciamento de uma fila de atendimento.
 
 <h2>Interface</h2>
+
 ![image](https://github.com/p3drobitencourt/Atendimento-Posto-de-Saude/assets/142850863/bec54d89-ec92-457e-bb67-94d1c4dae275)
 
 - O botão adicionar à fila coloca as pessoas na fila
