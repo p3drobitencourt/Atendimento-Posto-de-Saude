@@ -3,26 +3,78 @@
 
  // Função para adicionar um elemento à fila
  function adicionarElemento() {
-     
+  const atendimento = new Atendimento(document.getElementById('txtnovoNome').value,document.getElementById('txtnovoCpf').value,obterDataAtual(), obterHoraAtual());
+
+  if (atendimento.nome && atendimento.cpf) {
+      if(minhaFila.enqueue(atendimento)) {
+      atualizarFila();
+      document.getElementById('txtnovoNome').value = '';
+      document.getElementById('txtnovoCpf').value = '';
+
+      }else{
+        alert("Fila cheia!");
+      } 
+  } else {
+      alert('Por favor, preencha o nome e o CPF.');
+  }
  }
 //--------------------------------------------------------------------------------------------
  // Função para remover o primeiro elemento da fila
  function removerElemento() {
- 
+   if(!minhaFila.isEmpty()){
+    mostrarMensagemRemocao(minhaFila.dequeue());
+    atualizarFila();
+   }else{
+     alert("Fila vazia!");
+   }
+    
  }
  //--------------------------------------------------------------------------------
  function buscarCpf() {
-    
+  const cpf = document.getElementById('txtnovoCpf').value;
+  let pessoaEncontrada = false;
+  if(cpf){
+    for (const elemento of minhaFila) {
+      if(elemento.cpf === cpf){
+        alert("Pessoa encontrada, nome ="+ elemento.nome);
+        break;
+      }
+    }
+  
+    if (!pessoaEncontrada) {
+      alert("Pessoa não encontrada");
+   }
+  }else{
+    alert('Por favor, preencha o CPF.');
+  }
+  
 }
 //--------------------------------------------------------------------------------------------
 function mostrarMensagemRemocao(pessoaAtendida) {
-    
+  const mensagem = document.getElementById('mensagem-remocao');
+  mensagem.textContent = `Pessoa atendida: ${pessoaAtendida.nome}; Chegou às ${pessoaAtendida.hora} e está sendo atendida ás ${obterHoraAtual()}, tempo de espera: ${calcularDiferencaHoras(pessoaAtendida.hora,obterHoraAtual())}`
 }
 //--------------------------------------------------------------------------------------------
  // Função para atualizar a exibição da fila
  function atualizarFila() {
-     
-  }
+      const lbl = document.getElementById('lblPessoasFila');
+      if(minhaFila.isEmpty()){
+        lbl.textContent = "Fila vazia!";
+      }else if(minhaFila.isFull()){
+        lbl.textContent = "Fila cheia!";
+      }else{
+        lbl.textContent = "Pessoas na fila:";
+      }
+
+      const listaFila = document.getElementById('listFila');
+      listaFila.innerHTML = ''; // Limpar lista atual
+      
+      listaFila.innerHTML = minhaFila.toString();
+      console.log(minhaFila.toString());
+
+
+  };
+
 //--------------------------------------------------------------------------------------------
  // funcao data
  function obterDataAtual() {
